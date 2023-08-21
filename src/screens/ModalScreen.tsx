@@ -1,12 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Modal, Text, View } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const ModalScreen = () => {
 
-    const [isVisible, setIsVisible] = useState(false);
+    const { theme: { colors } } = useContext(ThemeContext);
+
+
+    const [ isVisible, setIsVisible ] = useState(false);
 
     return (
         <View style={ styles.globalMargin }>
@@ -15,6 +19,7 @@ export const ModalScreen = () => {
             <Button
                 title="Abril Modal"
                 onPress={ () => setIsVisible(true) }
+                color={ colors.primary }
             />
 
             <Modal
@@ -49,6 +54,7 @@ export const ModalScreen = () => {
                         <Button
                             title="Cerrar"
                             onPress={ () => setIsVisible(false) }
+                            color={ colors.primary }
                         />
                     </View>
                 </View>

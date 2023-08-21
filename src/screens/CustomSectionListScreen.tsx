@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useContext } from 'react';
 import { SectionList, Text, View } from 'react-native';
 import { styles } from '../theme/appTheme';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { ItemSeparator } from '../components/ItemSeparator';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 interface Casas {
     casa: string;
@@ -27,6 +28,9 @@ const casas: Casas[] = [
 ];
 
 export const CustomSectionListScreen = () => {
+
+    const { theme: { colors } } = useContext(ThemeContext);
+
     return (
         <View style={{
             ...styles.globalMargin ,
@@ -44,11 +48,11 @@ export const CustomSectionListScreen = () => {
                     </View>
                 )}
 
-                renderItem={ ({ item }) => <Text>{ item }</Text> }
+                renderItem={ ({ item }) => <Text style={{ color: colors.text }}>{ item }</Text> }
                 stickySectionHeadersEnabled
 
                 renderSectionHeader={ ({ section }) => (
-                    <View style={{ backgroundColor: 'white' }}>
+                    <View style={{ backgroundColor: colors.background }}>
                         <HeaderTitle title={ section.casa } />
                     </View>
                 )}

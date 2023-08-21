@@ -1,13 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Alert, Button, View } from 'react-native';
 
 import prompt from 'react-native-prompt-android';
 
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const AlertScreen = () => {
+
+    const { theme: { colors } } = useContext(ThemeContext);
+
 
     const showAlert = () => {
         Alert.alert(
@@ -71,6 +75,7 @@ export const AlertScreen = () => {
             <Button
                 title="Mostrar Alerta"
                 onPress={ showAlert }
+                color={ colors.primary }
             />
 
             <View style={{ height: 10 }} />
@@ -78,6 +83,7 @@ export const AlertScreen = () => {
             <Button
                 title="Mostrar Prompt"
                 onPress={ showPrompt }
+                color={ colors.primary }
             />
         </View>
     );
